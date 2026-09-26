@@ -67,6 +67,12 @@ export const getLocationById = (id: number) => fetchApi<Location>(`/locations/${
 export const createLocation = (payload: { name: string; address: string }) => 
   fetchApi<Location>("/locations", { method: "POST", body: JSON.stringify(payload) });
 
+export const updateLocation = (id: number, payload: { name: string; address: string }) => 
+  fetchApi<Location>(`/locations/${id}`, { method: "PUT", body: JSON.stringify(payload) });
+
+export const deleteLocation = (id: number) => 
+  fetchApi<any>(`/locations/${id}`, { method: "DELETE" });
+
 // ==========================================
 // BRANDS
 // ==========================================
@@ -75,12 +81,26 @@ export const getBrandById = (id: number) => fetchApi<Brand>(`/brands/${id}`);
 export const createBrand = (payload: { name: string }) => 
   fetchApi<Brand>("/brands", { method: "POST", body: JSON.stringify(payload) });
 
+// Add these to the BRANDS section of lib/actions.ts
+export const updateBrand = (id: number, payload: { name: string }) => 
+  fetchApi<Brand>(`/brands/${id}`, { method: "PUT", body: JSON.stringify(payload) });
+
+export const deleteBrand = (id: number) => 
+  fetchApi<any>(`/brands/${id}`, { method: "DELETE" });
+
 // ==========================================
 // CATEGORIES
 // ==========================================
+export const getCategories = () => fetchApi<Category[]>("/categories");
 export const getCategoryById = (id: number) => fetchApi<Category>(`/categories/${id}`);
 export const getSubcategories = (parentId: number) => fetchApi<Category[]>(`/categories/${parentId}/subcategories`);
 export const createCategory = (payload: { name: string }) => 
   fetchApi<Category>("/categories", { method: "POST", body: JSON.stringify(payload) });
 export const createSubcategory = (parentId: number, payload: { name: string }) => 
   fetchApi<Category>(`/categories/${parentId}/subcategories`, { method: "POST", body: JSON.stringify(payload) });
+
+export const updateCategory = (id: number, payload: { name: string; parent_id?: number | null }) => 
+  fetchApi<Category>(`/categories/${id}`, { method: "PUT", body: JSON.stringify(payload) });
+
+export const deleteCategory = (id: number) => 
+  fetchApi<any>(`/categories/${id}`, { method: "DELETE" });
