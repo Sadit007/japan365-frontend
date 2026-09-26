@@ -1,144 +1,83 @@
-"use client"
+﻿"use client"
 
 import * as React from "react"
 
 import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
 import { NavUser } from "@/components/nav-user"
-import { TeamSwitcher } from "@/components/team-switcher"
+import { SidebarBrand } from "@/components/sidebar-brand"
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
+  SidebarSeparator,
 } from "@/components/ui/sidebar"
-import { GalleryVerticalEndIcon, AudioLinesIcon, TerminalIcon, TerminalSquareIcon, BotIcon, BookOpenIcon, Settings2Icon, FrameIcon, PieChartIcon, MapIcon } from "lucide-react"
+import {
+  PackageIcon,
+  TagIcon,
+  MapPinIcon,
+  LayoutGridIcon,
+} from "lucide-react"
 
-// This is sample data.
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: "Admin",
+    email: "admin@japan365.com",
+    avatar: "",
   },
-  teams: [
-    {
-      name: "Acme Inc",
-      logo: (
-        <GalleryVerticalEndIcon
-        />
-      ),
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: (
-        <AudioLinesIcon
-        />
-      ),
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: (
-        <TerminalIcon
-        />
-      ),
-      plan: "Free",
-    },
-  ],
   navMain: [
     {
       title: "Products",
-      url: "#",
-      icon: (
-        <TerminalSquareIcon
-        />
-      ),
+      url: "/products",
+      icon: <PackageIcon />,
       isActive: true,
       items: [
-        {
-          title: "List Products",
-          url: "#",
-        },
-        {
-          title: "Add Products",
-          url: "#",
-        },
-        {
-          title: "Manage Stock",
-          url: "#",
-        },
+        { title: "All Products", url: "/products" },
+        { title: "Add Product", url: "/products/add" },
       ],
     },
     {
       title: "Brands",
-      url: "#",
-      icon: (
-        <BotIcon
-        />
-      ),
+      url: "/brands",
+      icon: <TagIcon />,
       items: [
-        {
-          title: "List Brands",
-          url: "#",
-        },
-        {
-          title: "Manage Brands",
-          url: "#",
-        },
+        { title: "All Brands", url: "/brands" },
+        { title: "Manage Brands", url: "/brands/manage" },
       ],
     },
     {
-      title: "Location",
-      url: "#",
-      icon: (
-        <BookOpenIcon
-        />
-      ),
+      title: "Locations",
+      url: "/locations",
+      icon: <MapPinIcon />,
       items: [
-        {
-          title: "List Locations",
-          url: "#",
-        },
-        {
-          title: "Manage Locations",
-          url: "#",
-        },
+        { title: "All Locations", url: "/locations" },
+        { title: "Manage Locations", url: "/locations/manage" },
       ],
     },
     {
       title: "Categories",
-      url: "#",
-      icon: (
-        <BookOpenIcon
-        />
-      ),
+      url: "/categories",
+      icon: <LayoutGridIcon />,
       items: [
-        {
-          title: "List Categories",
-          url: "#",
-        },
-        {
-          title: "Manage Categories",
-          url: "#",
-        },
+        { title: "All Categories", url: "/categories" },
+        { title: "Add Category", url: "/categories/manage" },
       ],
     },
   ],
-  
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <SidebarBrand />
       </SidebarHeader>
+      <SidebarSeparator />
       <SidebarContent>
         <NavMain items={data.navMain} />
       </SidebarContent>
+      <SidebarSeparator />
       <SidebarFooter>
         <NavUser user={data.user} />
       </SidebarFooter>
